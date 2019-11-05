@@ -35,15 +35,9 @@ class System_Router
     public function start()
     {
         // Анализируем путь
-        $this->_getController($file, $controllerName, $action, $args);
+        $this->_getController(/*$file, */$controllerName, $action, $args);
 
-        // Файл доступен?
-        if (!is_readable($file)) {
-            throw new Exception('404 error! Controller ' . '\'' . $controllerName . '\'' . ' not found');
-        }
 
-        // Подключаем файл
-        include_once $file;
 
         // Создаём экземпляр контроллера
         $class = 'Controller_' . $controllerName;
@@ -75,7 +69,7 @@ class System_Router
      * @param string $action
      * @param string $args
      */
-    private function _getController(&$file, &$controller, &$action, &$args)
+    private function _getController(/*&$file, */&$controller, &$action, &$args)
     {
         $route = empty($_GET['route']) ? 'index' : $_GET['route'];
 
@@ -102,7 +96,7 @@ class System_Router
             //unset($parts[1]);
             $action = array_shift($parts) . 'Action';
         }
-        $file = $this->_path . $controller . '.php';
+        //$file = $this->_path . $controller . '.php';
 
         $args = $parts;
     }

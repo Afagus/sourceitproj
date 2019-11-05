@@ -4,7 +4,8 @@ error_reporting(E_ALL);
 
 const DS = DIRECTORY_SEPARATOR;
 // Узнаём путь к файлам сайта
-$site_path = realpath(dirname(__FILE__) . DS) . DS;
+$site_path = realpath(dirname(__FILE__));
+
 $config = file_get_contents($site_path . DS . 'config.xml');
 
 $configXML  = new SimpleXMLElement($config);
@@ -35,12 +36,14 @@ spl_autoload_register('loadClass');
  */
 function loadClass($className)
 {
+    echo $className . '<br />';
     $path = explode('_', $className);
+
 
     $file = '';
     foreach ($path as $item) {
         $file .= $item . DS;
-    }
+        }
 
     $file = substr($file, 0, -1) . '.php';
 

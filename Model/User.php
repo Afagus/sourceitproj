@@ -60,26 +60,24 @@ class Model_User
      */
     public static function getById($userId)
     {
-        $dbUser = new Model_Db_Table_User();
-        $u = $dbUser->getById($userId);
-        echo '<pre>';
-        print_r($u);
-        echo '</pre>';
+        $dbUser     =  new Model_Db_Table_User();
+        $user = $dbUser->getById($userId);
+        $userData   =  !empty($user[0]) ? $user[0] : '';
 
 
-        //$userData = !empty($dbUser->getById($userId)[0]) ? $dbUser->getById($userId)[0] : '';
-
-        if (!empty($userData)) {
-            $modelUser = new self();
-            $modelUser->id = $userData->id;
-            $modelUser->name = $userData->first_name . ' ' . $userData->last_name;
-            $modelUser->email = $userData->email;
-            $modelUser->photo = $userData->photo;
-            $modelUser->role_id = $userData->role_id;
+        if(!empty($userData)) {
+            $modelUser  = new self();
+            $modelUser->id          = $userData->id;
+            $modelUser->name        = $userData->first_name . ' ' . $userData->last_name;
+            $modelUser->email       = $userData->email;
+            $modelUser->photo       = $userData->photo;
+            $modelUser->role_id     = $userData->role_id;
 
             return $modelUser;
-        } else {
-            throw new Exception('User not found', /*System_Exception::NOT_FOUND*/ 23);
         }
+        else {
+            throw new Exception('User not found', /*System_Exception::NOT_FOUND*/23);
+        }
+
     }
 }
