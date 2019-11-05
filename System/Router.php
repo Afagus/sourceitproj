@@ -35,7 +35,7 @@ class System_Router
     public function start()
     {
         // Анализируем путь
-        $this->_getController(/*$file, */$controllerName, $action, $args);
+        $this->_getController($controllerName, $action, $args);
 
 
 
@@ -69,7 +69,7 @@ class System_Router
      * @param string $action
      * @param string $args
      */
-    private function _getController(/*&$file, */&$controller, &$action, &$args)
+    private function _getController(&$controller, &$action, &$args)
     {
         $route = empty($_GET['route']) ? 'index' : $_GET['route'];
 
@@ -83,20 +83,15 @@ class System_Router
         if (empty($parts[0])) {
             $controller = 'Index';
         } else {
-            //$controller = ucfirst($parts[0]);
-            //unset($parts[0]);
-            $controller = ucfirst(array_shift($parts));
+                        $controller = ucfirst(array_shift($parts));
 
         }
 
         if (empty($parts[0])) {
             $action = 'indexAction';
         } else {
-            //$action = $parts[1] . 'Action';
-            //unset($parts[1]);
             $action = array_shift($parts) . 'Action';
         }
-        //$file = $this->_path . $controller . '.php';
 
         $args = $parts;
     }

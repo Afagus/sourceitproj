@@ -8,8 +8,14 @@ class Controller_User extends System_Controller
 
         try{
             $modelUser = Model_User:: getById($userId);
+
+//            echo '<pre>';
+//            print_r($modelUser);
+//            echo '</pre>';
+
         }
         catch (Exception $e){
+            echo 'Пользователь не найден!';
 
         }
     }

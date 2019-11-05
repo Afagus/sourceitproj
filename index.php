@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 
 const DS = DIRECTORY_SEPARATOR;
 // Узнаём путь к файлам сайта
-$site_path = realpath(dirname(__FILE__));
+$site_path = realpath(dirname(__FILE__)).DS;
 
 $config = file_get_contents($site_path . DS . 'config.xml');
 
@@ -36,7 +36,7 @@ spl_autoload_register('loadClass');
  */
 function loadClass($className)
 {
-    echo $className . '<br />';
+    //echo $className . '<br />';
     $path = explode('_', $className);
 
 

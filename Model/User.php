@@ -68,9 +68,8 @@ class Model_User
         if(!empty($userData)) {
             $modelUser  = new self();
             $modelUser->id          = $userData->id;
-            $modelUser->name        = $userData->first_name . ' ' . $userData->last_name;
+            //$modelUser->name        = $userData->first_name . ' ' . $userData->last_name;
             $modelUser->email       = $userData->email;
-            $modelUser->photo       = $userData->photo;
             $modelUser->role_id     = $userData->role_id;
 
             return $modelUser;
